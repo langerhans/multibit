@@ -5,7 +5,7 @@
 	<key>CFBundleName</key>
 	<string>MultiDoge</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.multibit</string>
+	<string>org.multidoge</string>
 	<key>CFBundleVersion</key>
 	<string>0.1.x beta</string>
 	<key>CFBundleAllowMixedLocalizations</key>
