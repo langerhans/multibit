@@ -323,6 +323,10 @@ public class MultiBitFrame extends JFrame implements ViewSystem, ApplicationList
         fireDataChangedTimerTask = new FireDataChangedTimerTask(this);
         fireDataChangedTimer = new Timer();
         fireDataChangedTimer.scheduleAtFixedRate(fireDataChangedTimerTask, FIRE_DATA_CHANGED_UPDATE_LATER_DELAY_TIME, FIRE_DATA_CHANGED_UPDATE_LATER_DELAY_TIME);
+    
+    
+        getAllowTxtRecord();
+    
     }
 
     public GenericApplication getApplication() {
@@ -1868,6 +1872,15 @@ public class MultiBitFrame extends JFrame implements ViewSystem, ApplicationList
         return healthCheckTimerTask;
     }
 
+    //Txt records
+    public boolean allowTxtRecords;
+    
+    public void getAllowTxtRecord() { 
+    	allowTxtRecords = Boolean.TRUE.toString().equals(userPreferences.getProperty(CoreModel.USE_TXT_RECORDS, "false"));
+
+    	
+    }
+    
     @Override
     public void onKeysAdded(Wallet wallet, List<ECKey> keys) {
     }

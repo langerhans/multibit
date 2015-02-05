@@ -117,6 +117,7 @@ public class ShowPreferencesPanel extends JPanel implements Viewable, Preference
     private boolean originalShowBid;
     private boolean originalShowAsk;
     private boolean originalShowExchange;
+    
 
     private JCheckBox showTicker;
     private JCheckBox showBitcoinConvertedToFiat;
@@ -126,6 +127,7 @@ public class ShowPreferencesPanel extends JPanel implements Viewable, Preference
     private JCheckBox showBid;
     private JCheckBox showAsk;
     private JCheckBox showExchange;
+    private JCheckBox useTxtRecordsCheckbox;
 
     private String originalExchange1;
     private String originalCurrency1;
@@ -322,6 +324,8 @@ public class ShowPreferencesPanel extends JPanel implements Viewable, Preference
         constraints.anchor = GridBagConstraints.ABOVE_BASELINE_LEADING;
         mainPanel.add(createBrowserIntegrationPanel(stentWidth), constraints);
 
+        
+        
         JLabel filler1 = new JLabel();
         filler1.setOpaque(false);
         constraints.fill = GridBagConstraints.BOTH;
@@ -699,6 +703,8 @@ public class ShowPreferencesPanel extends JPanel implements Viewable, Preference
         return appearancePanel;
     }
 
+    
+    
     private JPanel createTickerPanel(int stentWidth) {
         // Load up the original values.
         originalShowTicker = !Boolean.FALSE.toString().equals(controller.getModel().getUserPreference(ExchangeModel.TICKER_SHOW));
@@ -1451,6 +1457,12 @@ public class ShowPreferencesPanel extends JPanel implements Viewable, Preference
         askEveryTime.setOpaque(false);
         askEveryTime.setFont(FontSizer.INSTANCE.getAdjustedDefaultFont());
 
+        useTxtRecordsCheckbox = new JCheckBox(controller.getLocaliser().getString("showPreferencesPanel.useTxtRecordsCheckbox"));
+        useTxtRecordsCheckbox.setOpaque(false);
+        useTxtRecordsCheckbox.setFont(FontSizer.INSTANCE.getAdjustedDefaultFont());
+        useTxtRecordsCheckbox.setSelected(Boolean.TRUE.toString().equals(controller.getModel().getUserPreference(CoreModel.USE_TXT_RECORDS)));
+
+        
         browserIntegrationGroup.add(ignoreAll);
         browserIntegrationGroup.add(fillAutomatically);
         browserIntegrationGroup.add(askEveryTime);
@@ -1480,6 +1492,16 @@ public class ShowPreferencesPanel extends JPanel implements Viewable, Preference
         constraints.anchor = GridBagConstraints.LINE_START;
         browserIntegrationPanel.add(askEveryTime, constraints);
 
+        
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridx = 1;
+        constraints.gridy = 8;
+        constraints.weightx = 0.2;
+        constraints.weighty = 0.3;
+        constraints.anchor = GridBagConstraints.LINE_START;
+        browserIntegrationPanel.add(useTxtRecordsCheckbox, constraints);
+        
+        
         return browserIntegrationPanel;
     }
 
@@ -1767,6 +1789,11 @@ public class ShowPreferencesPanel extends JPanel implements Viewable, Preference
         return minimizeToTrayCheckBox.isSelected();
     }
 
+    @Override
+    public boolean getNewUseTxtRecords() {
+        return useTxtRecordsCheckbox.isSelected();
+    }
+    
     @Override
     public String getNewOpenExchangeRatesApiCode() {
         return oerApiCodeTextField.getText();

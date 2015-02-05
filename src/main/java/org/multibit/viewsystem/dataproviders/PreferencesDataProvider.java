@@ -139,4 +139,7 @@ public interface PreferencesDataProvider extends DataProvider {
     String getPreviousOpenExchangeRatesApiCode();
 
     boolean getNewMinimizeToTray();
+    boolean getNewUseTxtRecords();
+    
+    
 }

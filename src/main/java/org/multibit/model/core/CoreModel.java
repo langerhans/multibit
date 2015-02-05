@@ -63,6 +63,7 @@ public class CoreModel extends BaseModel<CoreModel> {
     public static final String PREVIOUS_WINDOW_TRAY = "previousWindowTray";
 
     public static final String MINIMIZE_TO_TRAY = "minimizeToTray";
+    public static final String USE_TXT_RECORDS = "useTxtRecords";
     
     public CoreModel() {
         this(null);

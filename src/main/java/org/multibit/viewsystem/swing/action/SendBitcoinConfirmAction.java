@@ -21,10 +21,12 @@ import com.google.dogecoin.core.Utils;
 import com.google.dogecoin.core.Wallet.SendRequest;
 import com.google.dogecoin.core.WrongNetworkException;
 import com.google.dogecoin.crypto.KeyCrypterException;
+
 import org.multibit.controller.bitcoin.BitcoinController;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
 import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.txt.txtrecords;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.dataproviders.BitcoinFormDataProvider;
 import org.multibit.viewsystem.swing.MultiBitFrame;
@@ -34,6 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.math.BigInteger;
 
@@ -76,6 +79,17 @@ public class SendBitcoinConfirmAction extends MultiBitSubmitAction {
             String sendAddress = dataProvider.getAddress();
             String sendAmount = dataProvider.getAmount();
 
+            
+            //Check if txt Records is allowed
+            //and proccess address, if needed.
+            if(mainFrame.allowTxtRecords)
+          	 {  
+          	  sendAddress = txtrecords.getTxtRecord(sendAddress);
+          	 }
+            
+            
+            
+            
             Validator validator = new Validator(super.bitcoinController);
             if (validator.validate(sendAddress, sendAmount)) {
                 // The address and amount are valid.
