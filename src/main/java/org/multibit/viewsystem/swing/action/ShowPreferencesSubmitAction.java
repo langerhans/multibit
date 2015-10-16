@@ -233,6 +233,12 @@ public class ShowPreferencesSubmitAction extends AbstractAction {
             controller.getModel().setUserPreference(CoreModel.MINIMIZE_TO_TRAY, Boolean.valueOf(newMinimizeToTray).toString());
             mainFrame.allowMinimizeToTray = Boolean.valueOf(newMinimizeToTray);
 
+            //Txt Records
+            boolean newAllowTxtRecords = dataProvider.getNewUseTxtRecords();
+            controller.getModel().setUserPreference(CoreModel.USE_TXT_RECORDS, Boolean.valueOf(newAllowTxtRecords).toString());
+            mainFrame.allowTxtRecords  = Boolean.valueOf(newAllowTxtRecords);
+            
+            
             // Currency ticker.
             boolean showTicker = dataProvider.getNewShowTicker();
             boolean showBitcoinConvertedToFiat = dataProvider.getNewShowBitcoinConvertedToFiat();

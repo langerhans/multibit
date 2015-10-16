@@ -685,12 +685,6 @@
             <artifactId>xchange-core</artifactId>
             <version>${xchange.version}</version>
         </dependency>
-        <!-- XChange MtGox exchange support -->
-        <dependency>
-            <groupId>com.xeiam.xchange</groupId>
-            <artifactId>xchange-mtgox</artifactId>
-            <version>${xchange.version}</version>
-        </dependency>
         <!-- XChange VirtEx exchange support -->
         <dependency>
             <groupId>com.xeiam.xchange</groupId>
@@ -819,7 +813,7 @@
         <bitcoinj.version>0.10.3-MB-ALICE</bitcoinj.version>
 
         <!-- Version of XChange to use (multiple uses) -->
-        <xchange.version>2.0.0-SNAPSHOT</xchange.version>
+        <xchange.version>2.0.0</xchange.version>
 
         <!-- Version of spongycastle to use -->
         <sc-light-jdk15on.version>1.47.0.2</sc-light-jdk15on.version>

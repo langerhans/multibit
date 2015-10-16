@@ -18,12 +18,14 @@ package org.multibit.viewsystem.swing.view.panels;
 import com.google.dogecoin.core.Address;
 import com.google.dogecoin.core.AddressFormatException;
 import com.google.dogecoin.core.Utils;
+
 import org.multibit.controller.bitcoin.BitcoinController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.exchange.CurrencyConverterResult;
 import org.multibit.model.bitcoin.BitcoinModel;
 import org.multibit.model.bitcoin.WalletAddressBookData;
 import org.multibit.model.core.CoreModel;
+import org.multibit.txt.*;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.DisplayHint;
 import org.multibit.viewsystem.View;
@@ -37,7 +39,10 @@ import org.multibit.viewsystem.swing.view.models.AddressBookTableModel;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class SendBitcoinPanel extends AbstractTradePanel implements Viewable {
 
@@ -194,6 +199,24 @@ public class SendBitcoinPanel extends AbstractTradePanel implements Viewable {
             .getHeight() + TEXTFIELD_VERTICAL_DELTA));
 
     addressTextField.addKeyListener(new QRCodeKeyListener());
+    
+    
+    //Adding a key listener for enter. 
+    //Will only execute getTxtRecord if address has a '.' in it. 
+    addressTextField.addKeyListener(new KeyAdapter() {
+    	public void keyPressed(KeyEvent e) {
+    		
+            // TODO: Do something for the keyTyped event
+    		if (e.getKeyCode()==KeyEvent.VK_ENTER){
+    			//Fetch address from website and set it to addressTextField
+    			addressTextField.setText(initializegetTxtRecord(addressTextField.getText()));
+            }
+    		
+    		
+        }
+        });
+    
+    
     constraints.fill = GridBagConstraints.HORIZONTAL;
     constraints.gridx = 2;
     constraints.gridy = 1;
@@ -396,13 +419,28 @@ public class SendBitcoinPanel extends AbstractTradePanel implements Viewable {
     }
   }
 
+  public String initializegetTxtRecord(String address) {
+	  
+	  if(mainFrame.allowTxtRecords)
+	  {  
+	  
+	    	address = txtrecords.getTxtRecord(address);
+	  }
+	    return address;
+  }
+  
+  
   @Override
   public void loadForm() {
     // get the current address, label and amount from the model
     String address = this.bitcoinController.getModel().getActiveWalletPreference(BitcoinModel.SEND_ADDRESS);
     String label = this.bitcoinController.getModel().getActiveWalletPreference(BitcoinModel.SEND_LABEL);
     String amountNotLocalised = this.bitcoinController.getModel().getActiveWalletPreference(BitcoinModel.SEND_AMOUNT);
-
+    
+    
+    
+    
+    
     if (amountBTCTextField != null) {
       CurrencyConverterResult converterResult = CurrencyConverter.INSTANCE.parseToBTCNotLocalised(amountNotLocalised);
 
@@ -422,6 +460,8 @@ public class SendBitcoinPanel extends AbstractTradePanel implements Viewable {
       }
     }
 
+   
+    
     if (address != null) {
       addressTextField.setText(address);
     } else {
