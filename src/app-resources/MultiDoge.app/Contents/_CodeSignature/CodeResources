@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>files</key>
+	<dict>
+		<key>Resources/Java/COPYING</key>
+		<data>
+		LEw1JthqoE8/gY4aPwsPDG2lNNw=
+		</data>
+		<key>Resources/Java/authors.txt</key>
+		<data>
+		nqefeFsVjIdroJdadyX2vkAJh9Q=
+		</data>
+		<key>Resources/Java/configuration.md</key>
+		<data>
+		Tx2XlYEhxyorYKhLWvzAIDYB7f4=
+		</data>
+		<key>Resources/Java/multidoge-exe.jar</key>
+		<data>
+		UnubzfwMe3/+QUoSpKJwfraI5AI=
+		</data>
+		<key>Resources/Java/multidoge.checkpoints</key>
+		<data>
+		/HMwQcx6RdULR8fEizWWTc0NQEs=
+		</data>
+		<key>Resources/Java/readme.txt</key>
+		<data>
+		hjYsQUjP2aG8WEnmwzzZvhDidmo=
+		</data>
+		<key>Resources/Java/release_notes.txt</key>
+		<data>
+		n7Y6HHyb/ZSEUOT+BVToHtfZqJA=
+		</data>
+		<key>Resources/multidoge.icns</key>
+		<data>
+		/NhxcSI+nckJ8jePyv+loPZvj0U=
+		</data>
+	</dict>
+	<key>rules</key>
+	<dict>
+		<key>^Resources/</key>
+		<true/>
+		<key>^Resources/.*\.lproj/</key>
+		<dict>
+			<key>optional</key>
+			<true/>
+			<key>weight</key>
+			<real>1000</real>
+		</dict>
+		<key>^Resources/.*\.lproj/locversion.plist$</key>
+		<dict>
+			<key>omit</key>
+			<true/>
+			<key>weight</key>
+			<real>1100</real>
+		</dict>
+		<key>^version.plist$</key>
+		<true/>
+	</dict>
+</dict>
+</plist>
